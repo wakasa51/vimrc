@@ -47,6 +47,17 @@ Plug 'scrooloose/syntastic'
 Plug 'Yggdroot/indentLine'
 Plug 'avelino/vim-bootstrap-updater'
 Plug 'sheerun/vim-polyglot'
+Plug 'simeji/winresizer'
+Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+Plug 'Shougo/denite.nvim'
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+let g:deoplete#enable_at_startup = 1
 if isdirectory('/usr/local/opt/fzf')
   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 else
@@ -76,6 +87,8 @@ Plug 'honza/vim-snippets'
 
 "" Color
 Plug 'tomasr/molokai'
+Plug 'altercation/vim-colors-solarized'
+Plug 'raphamorim/lucario'
 
 "*****************************************************************************
 "" Custom bundles
@@ -136,10 +149,12 @@ set ttyfast
 set backspace=indent,eol,start
 
 "" Tabs. May be overriten by autocmd rules
-set tabstop=4
-set softtabstop=0
-set shiftwidth=4
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 set expandtab
+set autoindent
+set smartindent
 
 "" Map leader to ,
 let mapleader=','
@@ -180,7 +195,7 @@ set number
 
 let no_buffers_menu=1
 if !exists('g:not_finish_vimplug')
-  colorscheme molokai
+  colorscheme solarized
 endif
 
 set mousemodel=popup
@@ -275,10 +290,10 @@ let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
 let g:NERDTreeShowBookmarks=1
 let g:nerdtree_tabs_focus_on_files=1
 let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
-let g:NERDTreeWinSize = 50
+let g:NERDTreeWinSize = 40
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
 nnoremap <silent> <F2> :NERDTreeFind<CR>
-nnoremap <silent> <F3> :NERDTreeToggle<CR>
+nnoremap <silent> <C-t> :NERDTreeToggle<CR>
 
 " grep.vim
 nnoremap <silent> <leader>f :Rgrep<CR>
@@ -341,6 +356,29 @@ set autoread
 "*****************************************************************************
 "" Mappings
 "*****************************************************************************
+"" My Setting
+inoremap <silent> jj <ESC>
+inoremap <silent> aa <ESC>A
+inoremap <silent> ZZ <ESC>ZZ
+inoremap <silent> def<Space> def<ESC>oend<ESC>kA<Space>
+
+"" Denite
+noremap sa :<c-u>Denite file_rec<CR>
+noremap sf :<c-u>Denite buffer<CR>
+noremap sg :<c-u>Denite grep<CR>
+noremap sc :<c-u>DeniteCursorWord grep<CR>
+call denite#custom#map('insert', '<C-s>', '<denite:do_action:vsplit>')
+call denite#custom#map('insert', '<C-i>', '<denite:do_action:split>')
+call denite#custom#map('insert', '<C-t>', '<denite:do_action:tabopen>')
+call denite#custom#map('insert', '<C-n>', '<denite:move_to_next_line>')
+call denite#custom#map('insert', '<C-p>', '<denite:move_to_previous_line>')
+call denite#custom#var('file_rec', 'command', ['rg', '--files', '--glob', '!.git', ''])
+call denite#custom#var('grep', 'command', ['rg'])
+call denite#custom#var('grep', 'default_opts', ['--vimgrep', '--no-heading'])
+call denite#custom#var('grep', 'recursive_opts', [])
+call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
+call denite#custom#var('grep', 'separator', ['--'])
+call denite#custom#var('grep', 'final_opts', [])
 
 "" Split
 noremap <Leader>h :<C-u>split<CR>
@@ -548,7 +586,7 @@ let g:javascript_enable_domhtmlcss = 1
 " vim-javascript
 augroup vimrc-javascript
   autocmd!
-  autocmd FileType javascript set tabstop=4|set shiftwidth=4|set expandtab softtabstop=4
+  autocmd FileType javascript set tabstop=2|set shiftwidth=4|set expandtab softtabstop=4
 augroup END
 
 
