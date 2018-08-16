@@ -113,7 +113,8 @@ Plug 'tpope/vim-rake'
 Plug 'tpope/vim-projectionist'
 Plug 'thoughtbot/vim-rspec'
 Plug 'ecomba/vim-ruby-refactoring'
-
+Plug 'Shougo/deoplete-rct'
+Plug 'osyo-manga/vim-monster'
 
 "*****************************************************************************
 "*****************************************************************************
@@ -565,6 +566,13 @@ vnoremap <leader>rrlv :RRenameLocalVariable<cr>
 vnoremap <leader>rriv :RRenameInstanceVariable<cr>
 vnoremap <leader>rem  :RExtractMethod<cr>
 
+" Ruby補完 vim-monster
+" gem install solargraphが必要
+let g:monster#completion#backend = 'solargraph'
+let g:monster#completion#rcodetools#backend = "async_rct_complete"
+let g:deoplete#sources#omni#input_patterns = {
+\   "ruby" : '[^. *\t]\.\w*\|\h\w*::',
+\}
 
 "*****************************************************************************
 "*****************************************************************************
