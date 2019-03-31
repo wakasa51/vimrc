@@ -13,6 +13,8 @@ http://techblog.lclco.com/entry/2018/02/27/083000
 最初にvim-plugをインストールする
 https://qiita.com/kouichi_c/items/e19ccf94b8e5ab6ed18e
 
+なお、colorscheme solarizedは端末の色もsolorizedにしないとおかしな色になるので、できない場合は、molokaiがlucarioにする。
+
 # メモ集
 ## フロント系
 フロントエンド
