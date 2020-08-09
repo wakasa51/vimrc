@@ -11,6 +11,7 @@ ln -s ~/dotfiles/.gitconfig ~/.gitconfig
 
 # plugin
 fzf: https://github.com/junegunn/fzf#using-git
+
 ripgrep: https://github.com/BurntSushi/ripgrep#installation
 
 # fish
