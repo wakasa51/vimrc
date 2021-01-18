@@ -19,17 +19,19 @@ ripgrep: https://github.com/BurntSushi/ripgrep#installation
 http://techblog.lclco.com/entry/2018/02/27/083000
 
 # vim
+```
+brew install vim ripgrep fzf tmux git bat
+gem install solargraph
+```
+
 最初にvim-plugをインストールする
 https://qiita.com/kouichi_c/items/e19ccf94b8e5ab6ed18e
 
 なお、colorscheme solarizedは端末の色もsolorizedにしないとおかしな色になるので、できない場合は、molokaiがlucarioにする。
 
-### deoplete
-deopleteを使うためにpython3をインストールしなければならないが、pyenvではなく、brew install python3で行う。
-
-(そうしないと動かない…)
-
-vimもbrew install vimで行う。
+## whichpr
+`~/.vim/autoload/` に下記の.vimファイルを置く
+https://github.com/pocke/whichpr/blob/master/autoload/whichpr.vim
 
 # メモ集
 ## フロント系
